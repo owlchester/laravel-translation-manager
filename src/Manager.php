@@ -12,6 +12,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
 use Vsch\TranslationManager\Classes\PathTemplateResolver;
 use Vsch\TranslationManager\Classes\TranslationFileRewriter;
@@ -656,7 +657,7 @@ class Manager
             $localePrefix = "$locale:";
             $prefixLen = strlen($localePrefix);
             foreach ($values as $key => $translation) {
-                if (str_starts_with($key, $localePrefix)) {
+                if (Str::startsWith($key, $localePrefix)) {
                     $transKey = substr($key, $prefixLen);
                     $translations[$transKey] = $translation;
                 }
@@ -1297,8 +1298,8 @@ class Manager
                     foreach ($matches[3] as $index => $key) {
                         $quote = $matches[2][$index][0];
                         $keyValue = $key[0];
-                        if ($quote == '\'' && !str_contains($keyValue, ["\"", "'", "->",]) ||
-                            $quote == '"' && !str_contains($keyValue, ["$", "\"", "'", "->",])
+                        if ($quote == '\'' && !Str::contains($keyValue, ["\"", "'", "->",]) ||
+                            $quote == '"' && !Str::contains($keyValue, ["$", "\"", "'", "->",])
                         ) {
                             if ($fileLines == null) {
                                 $fileLines = self::computeFileLines($fileContents);
