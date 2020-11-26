@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Arr;
 use Illuminate\Translation\Translator as LaravelTranslator;
 
 class Translator extends LaravelTranslator
@@ -789,6 +790,6 @@ HTML;
         if (!is_array($configLocales)) $configLocales = array($configLocales);
 
         $locales = array_merge(array($currentLocale), $configLocales, $locales);
-        return array_flatten(array_unique($locales));
+        return Arr::flatten(array_unique($locales));
     }
 }
