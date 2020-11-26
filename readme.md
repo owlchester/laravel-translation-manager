@@ -21,7 +21,7 @@ $ php artisan migrate
 ```
 
 #### Supported Laravel Versions
-> * For Laravel 8.0 require: `"vsch/laravel-translation-manager": "~8.0"`
+> * For Laravel 8.x require: `"vsch/laravel-translation-manager": "~8.0"`
 >
 > * For Laravel 7.x require: `"vsch/laravel-translation-manager": "~7.0"`
 >
