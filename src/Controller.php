@@ -680,7 +680,7 @@ class Controller extends BaseController
         $prefix = '';
         $gkey = $key;
 
-        if (starts_with($key, 'vnd:') || starts_with($key, 'wbn:')) {
+        if (Str::startsWith($key, 'vnd:') || Str::startsWith($key, 'wbn:')) {
             // these have vendor with . afterwards in the group
             $parts = explode('.', $key, 2);
 

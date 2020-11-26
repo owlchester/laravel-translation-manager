@@ -391,7 +391,7 @@ class Manager
             $this->augmentedGroupReverseList = [];
 
             foreach ($groupList as $group) {
-                if (starts_with($group, ["vnd:", "wbn:"])) {
+                if (Str::startsWith($group, ["vnd:", "wbn:"])) {
                     // we need this one
                     $parts = explode('.', $group, 2);
                     if (count($parts) === 2) {
