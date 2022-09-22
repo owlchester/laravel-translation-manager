@@ -291,7 +291,7 @@ return array(
      *
      *
      * 'lang'           - defines the location of the application's standard language files relative to the root
-     *                  of the application. Laravel 4.2 '/app/lang', 5.x '/resources/lang'.
+     *                  of the application. `/lang` since Laravel 9.x'.
      *
      * 'packages'        - defines the location of the package override directory
      *
@@ -305,25 +305,21 @@ return array(
      *
      *                  lang        - 'db_group' => '{group}'
      *                              - 'root' => ''
-     *                        (4.2) - 'file' => '/app/lang/{locale}/{group}'
-     *                        (5.x) - 'file' => '/resources/lang/{locale}/{group}'
+     *                              - 'file' => 'lang/{locale}/{group}'
      *
      *                  packages    - 'db_group' => '{package}::{group}'
      *                              - 'root' => ''
-     *                        (4.2) - 'file' => '/app/lang/packages/{locale}/{package}/{group}'
-     *                        (5.x) - 'file' => '/resources/lang/vendor/{package}/{locale}/{group}'
+     *                              - 'file' => 'lang/vendor/{package}/{locale}/{group}'
      *
      *                  workbench   - 'db_group' => 'wbn:{vendor}.{package}::{group}'
      *                              - 'root' => '/workbench/{vendor}/{package}'
      *                              - 'include' => '/' // which means all vendor/package combinations
-     *                        (4.2) - 'file' => 'src/lang/{locale}/{group}'
-     *                        (5.x) - 'file' => 'resources/lang/{locale}/{group}'
+     *                              - 'file' => 'lang/{locale}/{group}'
      *
      *                  vendor      - 'db_group' => 'vnd:{vendor}.{package}::{group}'
      *                              - 'root' => '/vendor/{vendor}/{package}'
      *                              - 'include' => [] // which means no vendor/package combinations will be included
-     *                        (4.2) - 'file' => 'src/lang/{locale}/{group}'
-     *                        (5.x) - 'file' => 'resources/lang/{locale}/{group}'
+     *                              - 'file' => 'lang/{locale}/{group}'
      *
      *
      *                  The above sections have other defaults that will be added when the config file is processed. The other
@@ -366,24 +362,24 @@ return array(
      * Please read above before changing.
      */
     'language_dirs' => array(
-        'lang' => '/resources/lang/{locale}/{group}',
-        'packages' => '/resources/lang/vendor/{package}/{locale}/{group}',
+        'lang' => '/lang/{locale}/{group}',
+        'packages' => '/lang/vendor/{package}/{locale}/{group}',
         'workbench' => [
             'include' => '*/*',
             'root' => '/workbench/{vendor}/{package}',
-            'files' => 'resources/lang/{locale}/{group}',
+            'files' => 'lang/{locale}/{group}',
         ],
         'vendor' => [
             'include' => [],
             'root' => '/vendor/{vendor}/{package}',
-            'files' => 'resources/lang/{locale}/{group}',
+            'files' => 'lang/{locale}/{group}',
         ],
 
         // this will make LTM translation importable as wbn:vsch.laravel-translation-manager.messages
 //        'vendor' => [
 //            'include' => ['vsch/laravel-translation-manager'],
 //            'root' => '/vendor/{vendor}/{package}',
-//            'files' => 'resources/lang/{locale}/{group}',
+//            'files' => 'lang/{locale}/{group}',
 //        ],
 //
 //        'vsch/laravel-translation-manager' => [
