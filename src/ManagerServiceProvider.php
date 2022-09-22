@@ -78,14 +78,14 @@ class ManagerServiceProvider extends ServiceProvider
     {
         $resources = __DIR__ . '/../resources/';
         $this->loadViewsFrom($resources . 'views', self::PACKAGE);
-        $this->loadTranslationsFrom($resources . 'lang', self::PACKAGE);
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', self::PACKAGE);
 
         $this->publishes([
             $resources . 'views' => base_path('resources/views/vendor/' . self::PACKAGE),
         ], 'views');
 
         $this->publishes([
-            $resources . 'lang' => base_path('lang/vendor/' . self::PACKAGE),
+            __DIR__ . '/../lang' => lang_path('vendor/' . self::PACKAGE),
         ], 'lang');
 
         $this->publishes([
