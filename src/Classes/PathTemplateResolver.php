@@ -35,11 +35,11 @@ class PathTemplateResolver
             'db_group' => '{group}',
             'root' => '',
             'json' => [
-                '*' => '/resources/lang/{locale}.json',
+                '*' => '/lang/{locale}.json',
             ],
             'files' => [
                 '4' => '/app/lang/{locale}/{group}',
-                '*' => '/resources/lang/{locale}/{group}',
+                '*' => '/lang/{locale}/{group}',
             ],
             'vars' => [
                 '{vendor}' => '',
@@ -52,7 +52,7 @@ class PathTemplateResolver
             'root' => '',
             'files' => [
                 '4' => '/app/lang/packages/{locale}/{package}/{group}',
-                '*' => '/resources/lang/vendor/{package}/{locale}/{group}',
+                '*' => '/lang/vendor/{package}/{locale}/{group}',
             ],
             'vars' => [
                 '{vendor}' => '',
@@ -64,7 +64,7 @@ class PathTemplateResolver
             'root' => '/workbench/{vendor}/{package}',
             'files' => [
                 '4' => 'src/lang/{locale}/{group}',
-                '*' => 'resources/lang/{locale}/{group}',
+                '*' => '/lang/{locale}/{group}',
             ],
             'vars' => [],
         ],
@@ -74,7 +74,7 @@ class PathTemplateResolver
             'root' => '/vendor/{vendor}/{package}',
             'files' => [
                 '4' => 'src/lang/{locale}/{group}',
-                '*' => 'resources/lang/{locale}/{group}',
+                '*' => '/lang/{locale}/{group}',
             ],
             'vars' => [],
         ],
@@ -83,10 +83,6 @@ class PathTemplateResolver
         //// opt-in, it is listed first, if this custom type is included then it will be a vendor type. Regardless of
         //// whether the directory exists or not. Therefore only include in vendor section if it is not located
         //// in workbench
-        //'caouecs/laravel4-lang' => [
-        //    '__merge' => ['vendor', 'workbench',],
-        //    'files' => '{locale}/{group}',
-        //],
         //'nesbot/carbon' => [
         //    '__merge' => ['vendor', 'workbench',],
         //    'files' => 'src/Carbon/Lang/{locale}',

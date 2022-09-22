@@ -85,7 +85,7 @@ class ManagerServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->publishes([
-            $resources . 'lang' => base_path('resources/lang/vendor/' . self::PACKAGE),
+            $resources . 'lang' => base_path('lang/vendor/' . self::PACKAGE),
         ], 'lang');
 
         $this->publishes([
