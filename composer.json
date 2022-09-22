@@ -1,5 +1,5 @@
 {
-    "name": "semantictouch/laravel-translation-manager",
+    "name": "owlchester/laravel-translation-manager",
     "description": "Enhanced Laravel Translation Manager",
     "keywords": [
         "laravel",
@@ -16,10 +16,10 @@
         }
     ],
     "require": {
-        "php": ">=7.3.0",
-        "illuminate/support": "^8.0",
-        "laravelcollective/html": "^6.2",
-        "illuminate/translation": "^8.0",
+        "php": ">=8.0.2",
+        "illuminate/support": "^9.0",
+        "laravelcollective/html": "^6.3",
+        "illuminate/translation": "^9.0",
         "doctrine/dbal": "^3.0",
         "symfony/finder": "^5.1"
     },

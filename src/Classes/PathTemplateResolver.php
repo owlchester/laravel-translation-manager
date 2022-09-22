@@ -189,7 +189,11 @@ class PathTemplateResolver
         foreach ($config as $key => &$value) {
             // resolve any vendor and package now so that these get processed first
             if (array_key_exists('root', $value)) {
-                $value['path'] = static::expandVars(appendPath($value['root'], $value['files']), array_key_exists('vars', $value) ? $value['vars'] : []);
+                try {
+                    $value['path'] = static::expandVars(appendPath($value['root'], $value['files']), array_key_exists('vars', $value) ? $value['vars'] : []);
+                } catch (\Exception $e) {
+                    // silence any errors
+                }
             }
         }
     }
