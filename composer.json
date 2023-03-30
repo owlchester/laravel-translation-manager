@@ -17,9 +17,9 @@
     ],
     "require": {
         "php": ">=8.0.2",
-        "illuminate/support": "^9.0",
+        "illuminate/support": "^9.0|^10.0",
         "laravelcollective/html": "^6.3",
-        "illuminate/translation": "^9.0",
+        "illuminate/translation": "^9.0|^10.0",
         "doctrine/dbal": "^3.0",
         "symfony/finder": "^6.0"
     },
@@ -27,7 +27,7 @@
         "phpspec/phpspec": "^7.0",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.2",
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^9.0|^10.0"
     },
     "autoload": {
         "classmap": [
