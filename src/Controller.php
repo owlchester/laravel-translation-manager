@@ -818,7 +818,7 @@ class Controller extends BaseController
 
         $file = $this->manager->zipTranslations($group);
         if ($group && $group !== '*') {
-            $zip_name = "Translations_${group}_"; // Zip name
+            $zip_name = "Translations_{$group}_"; // Zip name
         } else {
             $zip_name = "Translations_"; // Zip name
         }
@@ -1625,7 +1625,7 @@ class Controller extends BaseController
 
             $file = $this->manager->zipTranslations($group);
             if ($group && $group !== '*') {
-                $zip_name = "Translations_${group}_"; // Zip name
+                $zip_name = "Translations_{$group}_"; // Zip name
             } else {
                 $zip_name = "Translations_"; // Zip name
             }

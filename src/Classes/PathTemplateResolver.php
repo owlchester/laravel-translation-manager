@@ -189,6 +189,7 @@ class PathTemplateResolver
                     $value['path'] = static::expandVars(appendPath($value['root'], $value['files']), array_key_exists('vars', $value) ? $value['vars'] : []);
                 } catch (\Exception $e) {
                     // silence any errors
+                    //throw $e;
                 }
             }
         }
