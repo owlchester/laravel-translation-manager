@@ -17,7 +17,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <p>@lang($package . '::messages.export-warning-text') @lang($package.'::messages.powered-by-yandex')</p>
+                        <p>@lang($package . '::messages.export-warning-text')</p>
                         <div class="alert alert-danger alert-dismissible" style="display:none;">
                             <button type="button" class="close" data-hide="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -155,9 +155,11 @@
                                     <div class="col-sm-6">
                                         <?= ifEditTrans($package . '::messages.choose-group'); ?>
                                         <div class="input-group-sm">
-                                            <?= Form::select('group', $groups, $group, array(
-                                                'form' => 'form-select', 'class' => 'group-select form-control'
-                                            )) ?>
+                                            <select name="group" form="form-select" class="group-select form-control">
+                                                @foreach ($groups as $g)
+                                                    <option value="{{ $g }}" @if ($g === $group) selected="selected" @endif>{{ $g }}</option>
+                                              @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -343,16 +345,6 @@
                                                     class="btn btn-sm btn-default"><?= noEditTrans($package . '::messages.check-none')?></button>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class=" col-sm-12">
-                                            <div style="min-height: 10px"></div>
-                                            <?= ifEditTrans($package . '::messages.show-published-site') ?>
-                                            <?= ifEditTrans($package . '::messages.show-unpublished-site') ?>
-                                            <a class="btn btn-xs btn-default" role="button" id="show-unpublished-site" href="<?= action($controller . '@getToggleShowUnpublished') ?>">
-                                                <?= noEditTrans($package . ($show_unpublished ? '::messages.show-published-site' : '::messages.show-unpublished-site')) ?>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class=" col-sm-8">
                                     <div class="input-group-sm">
@@ -485,19 +477,16 @@
                                 <div class="panel-body">
                                     <!-- Add Keys Form -->
                                     <div class="col-sm-12">
-                                        <?=  Form::open(['id' => 'form-addkeys', 'method' => 'POST', 'action' => [$controller . '@postAddSuffixedKeys', $group]]) ?>
+                                        <form method="POST" action="{{ action($controller . '@postAddSuffixedKeys', $group) }}" id="form-addkeys">
+                                            @csrf
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <label for="keys">@lang($package . '::messages.keys'):</label><?= ifEditTrans($package . '::messages.addkeys-placeholder') ?>
-                                                <?=  Form::textarea('keys', Request::old('keys'), [
-                                                    'class' => "form-control", 'rows' => "4", 'style' => "resize: vertical", 'placeholder' => noEditTrans($package . '::messages.addkeys-placeholder')
-                                                ]) ?>
+                                                <textarea name="keys" class="form-control" rows="4" style="resize: vertical" placeholder="{{ oEditTrans($package . '::messages.addkeys-placeholder') }}">{!! Request::old('keys') !!}</textarea>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label for="suffixes">@lang($package . '::messages.suffixes'):</label><?= ifEditTrans($package . '::messages.addsuffixes-placeholder') ?>
-                                                <?=  Form::textarea('suffixes', Request::old('suffixes'), [
-                                                    'class' => "form-control", 'rows' => "4", 'style' => "resize: vertical", 'placeholder' => noEditTrans($package . '::messages.addsuffixes-placeholder')
-                                                ]) ?>
+                                                <textarea name="suffixes" class="form-control" rows="4" style="resize: vertical" placeholder="{{ oEditTrans($package . '::messages.addsuffixes-placeholder') }}">{!! Request::old('suffixes') !!}</textarea>
                                             </div>
                                         </div>
                                         <div style="min-height: 10px"></div>
@@ -553,7 +542,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <?=  Form::close() ?>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -573,21 +562,17 @@
                                     <div class="col-sm-12">
                                         <!-- Key Ops Form -->
                                         <div id="wildcard-keyops-results" class="results"></div>
-                                        <?=  Form::open([
-                                            'id' => 'form-keyops', 'data-remote' => "true", 'method' => 'POST', 'action' => [$controller . '@postPreviewKeys', $group]
-                                        ]) ?>
+                                        <form method="POST" id="form-keyops" data-remote="true" action="{{ action($controller . '@postPreviewKeys', $group) }}">
+                                            @csrf
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <label for="srckeys">@lang($package . '::messages.srckeys'):</label><?= ifEditTrans($package . '::messages.srckeys-placeholder') ?>
-                                                <?=  Form::textarea('srckeys', Request::old('srckeys'), [
-                                                    'id' => 'srckeys', 'class' => "form-control", 'rows' => "4", 'style' => "resize: vertical", 'placeholder' => noEditTrans($package . '::messages.srckeys-placeholder')
-                                                ]) ?>
+                                                <textarea name="srckeys" id="srckeys" class="form-control" rows="4" style="resize: vertical" placeholder="{{ oEditTrans($package . '::messages.srckeys-placeholder') }}">{!! Request::old('srckeys') !!}</textarea>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label for="dstkeys">@lang($package . '::messages.dstkeys'):</label><?= ifEditTrans($package . '::messages.dstkeys-placeholder') ?>
-                                                <?=  Form::textarea('dstkeys', Request::old('dstkeys'), [
-                                                    'id' => 'dstkeys', 'class' => "form-control", 'rows' => "4", 'style' => "resize: vertical", 'placeholder' => noEditTrans($package . '::messages.dstkeys-placeholder')
-                                                ]) ?>
+
+                                                <textarea name="dstkeys" id="dstkeys" class="form-control" rows="4" style="resize: vertical" placeholder="{{ oEditTrans($package . '::messages.dstkeys-placeholder') }}">{!! Request::old('dstkeys') !!}</textarea>
                                             </div>
                                         </div>
                                         <div style="min-height: 10px"></div>
@@ -657,7 +642,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <?=  Form::close() ?>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

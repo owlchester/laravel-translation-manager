@@ -3,15 +3,19 @@
 @section('content')
     <div>
         @if($op === 'create')
-            {!! \Form::open(['route' => 'userlocales.store']) !!}
+            <form method="POST" action="{{ route('userlocales.store') }}">
         @elseif($op === 'edit')
-            {!! \Form::model($userlocale, ['method' => 'PATCH', 'route' => ['userlocales.update', $userlocale->id]]) !!}
+            <form method="POST" action="{{ route('userlocales.update', [$userlocale->id]) }}">
+                <input name="_action" type="hidden" value="PATCH">
         @else
-            {!! \Form::model($userlocale, [$userlocale->id]) !!}
+            <form method="POST" action="{{ route('userlocales.store', [$userlocale->id]) }}">
+                <input name="_action" type="hidden" value="PUT">
         @endif
+            @csrf
         <div class="row">
             <div class="form-group col-sm-3">
                 <label for="user_id">@lang('ltm-user-locales.user'):</label>
+                <select name="user_id"
                 {!! Form::select('user_id', [0 => ''], $users,  Input::old('user_id'), [isViewOp($op) ? 'disabled' : '','class' => 'form-control', ]) !!}
                 {!! Form::text('user', $userlocale ? $userlocale->user->id : '', [isViewOp($op) ? 'readonly' : 'data-vsch_completion'=>'users:id;id:user_id','class' => 'form-control', ]) !!}
                 {!! Form::hidden('user_id', Input::old('user_id'), ['id'=>'user_id']) !!}
@@ -48,11 +52,13 @@
                 @endif
             </div>
         </div>
-        {!! \Form::close() !!}
+        </form>
 
         @if($op === 'delete')
-            {!! \Form::open(['style' => 'display: inline-block;', 'id' =>'userlocales-delete', 'method' => 'DELETE', 'route' => ['userlocales.destroy', $userlocale->id]]) !!}
-            {!! \Form::close() !!}
+            <form method="POST" style="display: inline-bock" id="userlocales-delete" action="{{ action('userlocales.destroy', $userlocale->id) }}">
+                @csrf
+                <input name="_action" type="hidden" value="DELETE" />
+            </form>
         @endif
     </div>
 @stop

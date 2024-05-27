@@ -6,20 +6,24 @@
         "translations",
         "translator"
     ],
-    "homepage": "https://github.com/vsch/laravel-translation-manager",
+    "homepage": "https://github.com/owlchester/laravel-translation-manager",
     "license": "MIT",
     "authors": [
         {
             "name": "Vladimir Schneider",
             "email": "vladimir.schneider@gmail.com",
             "role": "Developer"
+        },
+        {
+            "name": "Jay Payne",
+            "email": "hello@kanka.io",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": ">=8.0.2",
-        "illuminate/support": "^9.0|^10.0",
-        "laravelcollective/html": "^6.3",
-        "illuminate/translation": "^9.0|^10.0",
+        "illuminate/support": "^9.0|^10.0|^11.0",
+        "illuminate/translation": "^9.0|^10.0|^11.0",
         "doctrine/dbal": "^3.0",
         "symfony/finder": "^6.0"
     },

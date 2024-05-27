@@ -24,9 +24,9 @@
             {!! $userlocales->appends($filterParams)->render() !!}
         </div>
     </div>
-    {!! \Form::open(['route' => ['userlocales.index'], 'method' => 'get', 'id'=>"filter-userlocales", 'class'=>"form-horizontal"]) !!}
+    <form method="GET" id="filter-userlocales" action="{{ action('userlocales.index') }}" class="form-horizontal">
     <input name="_page" type="hidden" value="{{\Input::get('_page', '') }}">
-    {!! \Form::close() !!}
+    </form>
     <div class="row">
         <div class="col-xs-12">
             <table class="table table-striped item-index table-condensed">

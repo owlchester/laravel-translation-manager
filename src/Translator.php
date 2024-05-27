@@ -22,6 +22,8 @@ class Translator extends LaravelTranslator
     /* @var $manager Manager */
     protected $manager;
 
+    protected Application $app;
+
     protected $suspendInPlaceEdit;
     protected $suspendUsageLogging;
 
