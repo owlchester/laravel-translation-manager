@@ -291,6 +291,10 @@ if (!function_exists('inPlaceEditingMode')) {
 if (!function_exists('formSubmit')) {
     function formSubmit($value = null, $options = array())
     {
+        $optionsHtml = [];
+        foreach ($options as $key => $prop) {
+            $optionsHtml[] = $key . '="' . $prop . '"';
+        }
         if (isInPlaceEditing(1)) {
             $innerText = $value;
             if (preg_match('/^\s*(<a\s*[^>]*>[^<]*<\/a>)\s*\[(.*)\]$/', $value, $matches)) {
@@ -301,10 +305,10 @@ if (!function_exists('formSubmit')) {
                 $value = $matches[1];
             }
             if ($innerText !== $value) {
-                return "[$value]" . Form::submit($innerText, $options);
+                return "[$value]" . '<button type="submit" ' . implode(' ', $optionsHtml) . '>' . $innerText . '</button>';
             }
         }
-        return Form::submit($value, $options);
+        return '<button type="submit" ' . implode(' ', $optionsHtml) . '>' . $value . '</button>';
     }
 }
 

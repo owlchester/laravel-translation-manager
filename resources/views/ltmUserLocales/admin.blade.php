@@ -15,7 +15,6 @@
         <div class="row">
             <div class="form-group col-sm-3">
                 <label for="user_id">@lang('ltm-user-locales.user'):</label>
-                <select name="user_id"
                 {!! Form::select('user_id', [0 => ''], $users,  Input::old('user_id'), [isViewOp($op) ? 'disabled' : '','class' => 'form-control', ]) !!}
                 {!! Form::text('user', $userlocale ? $userlocale->user->id : '', [isViewOp($op) ? 'readonly' : 'data-vsch_completion'=>'users:id;id:user_id','class' => 'form-control', ]) !!}
                 {!! Form::hidden('user_id', Input::old('user_id'), ['id'=>'user_id']) !!}
