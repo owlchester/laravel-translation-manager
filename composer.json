@@ -22,14 +22,14 @@
     ],
     "require": {
         "php": ">=8.3.0",
-        "illuminate/support": "^10.0|^11.0",
-        "illuminate/translation": "^10.0|^11.0",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "illuminate/translation": "^10.0|^11.0|^12.0",
         "symfony/finder": "^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "mockery/mockery": "^1.6",
-        "phpunit/phpunit": "^10.0.1|^11.0.1"
+        "phpunit/phpunit": "^11.5.3"
     },
     "autoload": {
         "classmap": [
